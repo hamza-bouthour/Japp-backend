@@ -4,7 +4,7 @@ const authenticate = require("../authenticate");
 const cors = require("./cors");
 
 const Promotion = require("../models/promotion");
-console.log("saluuut");
+console.log("saluasdfasdaduut");
 
 promotionRouter
   .route("/")
