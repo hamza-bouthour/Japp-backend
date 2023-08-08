@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+/* const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 require('mongoose-currency').loadType(mongoose);
@@ -58,4 +58,4 @@ const campsiteSchema = new Schema({
 
 const Campsite = mongoose.model('Campsite', campsiteSchema);
 
-module.exports = Campsite;  
+module.exports = Campsite;   */

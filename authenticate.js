@@ -31,7 +31,7 @@ const verifyAdmin = (req, res, next) => {
         return next(err)
     }
 }
-exports.facebookPassport = passport.use(
+/* exports.facebookPassport = passport.use(
     new FacebookTokenStrategy(
         {
             clientID: config.facebook.clientId,
@@ -60,9 +60,9 @@ exports.facebookPassport = passport.use(
             });
         }
     )
-);
+); */
 
-exports.jwtPassport = passport.use(
+/* exports.jwtPassport = passport.use(
     new JwtStrategy(
         opts,
         (jwt_payload, done) => {
@@ -79,6 +79,6 @@ exports.jwtPassport = passport.use(
         }
     )
 );
-
-exports.verifyAdmin = verifyAdmin;
-exports.verifyUser = passport.authenticate('jwt', {session: false});
+ */
+/* exports.verifyAdmin = verifyAdmin;
+exports.verifyUser = passport.authenticate('jwt', {session: false}); */

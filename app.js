@@ -12,25 +12,9 @@ const config = require("./config");
 
 var indexRouter = require("./routes/index");
 const cartsRouter = require("./routes/carts");
-// const campsiteRouter = require('./routes/campsiteRouter');
-// const promotionRouter = require('./routes/promotionRouter');
-// const partnerRouter = require('./routes/partnerRouter');
-// const uploadRouter = require('./routes/uploadRouter');
-// const favoriteRouter = require('./routes/favoriteRouter');
+const productsRouter = require("./routes/products");
+const categoriesRouter = require("./routes/categories");
 
-// const mongoose = require("mongoose");
-// const url = config.mongoUrl;
-// const connect = mongoose.connect(url, {
-//   useCreateIndex: true,
-//   useFindAndModify: false,
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
-
-// connect.then(
-//   () => console.log("Connected correctly to server"),
-//   (err) => console.log(err)
-// );
 var app = express();
 
 app.all("*", (req, res, next) => {
@@ -74,6 +58,8 @@ app.use("/", indexRouter);
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/carts", cartsRouter);
+app.use("/products", productsRouter);
+app.use("/categories", categoriesRouter);
 // app.use('/promotions', promotionRouter);
 // app.use('/partners', partnerRouter);
 // app.use('/imageUpload', uploadRouter);

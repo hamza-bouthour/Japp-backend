@@ -1,8 +1,17 @@
-module.exports = {
-    'secretKey': '12345-67890-09876-54321',
-    'mongoUrl' : 'mongodb://localhost:27017/nucampsite',
-    'facebook': {
-        clientId: '314317056798816',
-        clientSecret: 'c8d555d4fc1d20d893b5df655e06dd54'
-    }
-}
+require('dotenv').config();
+const config = {
+    db: {
+        host     : process.env.DB_HOST,
+        user     : process.env.DB_USER,
+        password : process.env.DB_PASS,
+        database : process.env.DB_NAME,
+        port     : process.env.DB_PORT,
+     //   debug    : true
+     /* ,   pool: {
+        max: 5,
+        min: 0,
+        acquire: 30000,
+        idle: 10000
+    } */}
+};
+module.exports = config;

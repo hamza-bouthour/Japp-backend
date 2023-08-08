@@ -1,46 +1,33 @@
 const express = require("express");
-// const Campsite = require("../models/campsite");
-const mysql = require("mysql");
-const authenticate = require("../authenticate");
-const { db } = require("../models/user");
 const cors = require("./cors");
 
-const cartsRouter = express.Router();
 
+const controller = require('../controllers/carts.controller')
+const cartsRouter = express.Router();
 cartsRouter // /carts GET (public) returns all carts
-  .route("/")
+  .route('/')
   .options(cors.corsWithOptions, (req, res) => res.sendStatus(200))
-  .get(cors.cors, (req, res, next) => {
+  .get(cors.cors, async  (req, res, next) => {
     try {
-      let cartsQuery = `SELECT * FROM carts`;
-      db.query(cartsQuery, async (results) => {
-        console.log(results);
-        res.statusCode = 200;
-        res.setHeader("Content-Type", "application/json");
-        res.json(results);
-      });
-    } catch (err) {
-      console.log("DB connecxion failed!");
+      const resultAllCarts = await controller.selectAllCarts();
+      res.status(200).json({elements: resultAllCarts});
     }
-  });
-// .post( // /carts POST (private) adds products to a cart
-//   cors.corsWithOptions,
-//   authenticate.verifyUser,
-//   authenticate.verifyAdmin,
-//   (req, res, next) => {
-//     try {
-//       let addProductQuery = `INSERT INTO carts (product_id) VALUES (${req.body.product_id})`;
-//       db.query(addProductQuery, async () => {
-//       res.statusCode = 200;
-//       res.setHeader("Content-Type", "application/json");
-//       res.send({body: "Product added successfully!"})
-//       })
-//     } catch (err) => {
-//       err ? console.log("DB connecxion failed!") :
-//       res.send({body: "product_id doesn't exist"})
-//     }
-//   }
-// )
+    catch (err) {
+      console.log(err);
+    }
+  })
+ .post(cors.cors, async  (req, res, next) => {
+    try {
+      const insertProductToCarts = await controller.insertProductToCarts(req.body);
+      res.status(200).json({ message: 'product inserted to cart' });
+    }
+    catch (err) {
+      res.status(500).json({ message: 'Internal server error' });
+      console.log(err);
+    }
+  }
+);
+
 // .put(
 //   cors.corsWithOptions,
 //   authenticate.verifyUser,
